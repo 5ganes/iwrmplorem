@@ -15,12 +15,14 @@ function createMenu($parentId, $groupType)
 	while($groupRow = $conn->fetchArray($groupResult))
 	{?>
 		<li>
-    	<a href="<? if($groupRow['id']==1 or $groupRow['id']==1009){ echo "#"; }else{ echo $groupRow['urlname'];}?>" <? if($parentId==1022){?>target="_blank"<? }?>>
-			<? if($parentId==0){?><i class="<? include("menuIcon.php"); ?>"></i><br /><? }?><?=$groupRow['name'];?>
+    	<a href="<? if($groupRow['id']==1){ echo "#"; }else{ echo $groupRow['urlname'];}?>" <? if($parentId==1022){?>target="_blank"<? }?>>
+			<? if($parentId==0){?><i class="<? //include("menuIcon.php"); ?>"></i><br /><? }?><?=$groupRow['name'];?>
       	</a>
 		<?
-		if($groupRow['linkType']=="Normal Group")
-			createSubMenu($groupRow['id'], $groupType);
+		if($groupRow['linkType']=="Normal Group"){
+			if($groupRow['id']!=PUBLICATION)
+				createSubMenu($groupRow['id'], $groupType);
+		}
 		echo "</li>\n";
 	}
 	if ($conn->numRows($groupResult) > 0)

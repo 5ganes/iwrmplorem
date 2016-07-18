@@ -5,7 +5,7 @@
     <head>
 
         <meta charset="utf-8">
-        <title>Agriculture Information & Communucation Center</title>
+        <title>Irrigation and Water Resource Management Project</title>
         <? include("baselocation.php"); ?>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
@@ -69,7 +69,7 @@
                                 <span class="icon-bar"></span>
                             </a>
                             <h1>
-                                <a class="brand" href="index.php"><img src="assets/img/logo.png" style="width:100%" /></a>
+                                <a class="brand" href="index.php"><img style="width: 400px; height: 90px;padding: 8px 0" src="assets/img/logo.png" style="width:100%" /></a>
                             </h1>
                             <div class="nav-collapse collapse">
                             	<div id="menu">

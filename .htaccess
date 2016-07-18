@@ -22,6 +22,9 @@ RewriteRule ^contact-us index.php?action=contact-us [L]
 #our calendar
 #RewriteRule ^our-calendar index.php?action=pdfreader&url=our-calendar [L]
 
+#publications
+RewriteRule ^publications index.php?action=publications [L]
+
 #forum login
 RewriteRule ^userlogin.html userlogin.php [L]
 #RewriteRule ^userlogin.html/([-A-Za-z0-9]+) userlogin.php?msg=$1 [L]
