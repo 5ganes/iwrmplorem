@@ -33,6 +33,9 @@ define("NOTICE", 796);
 define("MAGAZINE", 1073);
 define("PHOTO_GLLERY", 1138);
 define("HOT_NEWS", 1166);
+define("NEWS_NOTICES", 1171);
+define("CHIEF", 998);
+define("INFO_OFFICER", 1187);
 
 ////////////// FOR KRISHI DIARY
 define("CMS_DIARY_DIR", "files/diary/");

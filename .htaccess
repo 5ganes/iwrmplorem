@@ -13,7 +13,7 @@ RewriteRule ^forgotpassword index.php?action=forgot_password [L]
 RewriteRule ^home index.php [L]
 
 #for bills
-RewriteRule ^bills.html bills.php [L]
+RewriteRule ^bills index.php?action=bills [L]
 
 RewriteRule ^products index.php?action=products [L]
 

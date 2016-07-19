@@ -134,28 +134,15 @@
                         <p><a href="<?=$aboutGet['urlname'];?>">Read more...</a></p>
                     </div>
                     <div class="widget span3">
-                        <h4>Important Links</h4>
-						<style>
-							.show-links ul{ margin:0; padding:0;}
-							.show-links ul li{ margin:9px 5px; border-bottom:1px solid #cdcdcd; list-style:none}
-							.show-links ul li:last-child{ border-bottom:none}
-							.show-links ul li a{ color:#5d5d5d; font-size:14px}
-							.show-links ul li a:hover{ color:#9d426b}
-                      	</style>                       
-                        <div class="show-links">
-                        	<ul>
-                            	<? $link=$groups->getByParentIdWithLimit(LINKS,6);
-								while($linkGet=$conn->fetchArray($link))
-								{?>
-                                	<li><a href="<?=$linkGet['contents'];?>" target="_blank" title="<?=$linkGet['name'];?>"><?=$linkGet['name'];?></a></li>
-                            	<? }?>
-                            </ul>
-                        </div>
+                        <? $notice=$groups->getById(NOTICE); $noticeGet=$conn->fetchArray($notice); ?>
+                        <h4><?=$noticeGet['name'];?></h4>
+                        <p><?=substr($noticeGet['shortcontents'],0,280);?></p>
+                        <p><a href="<?=$noticeGet['urlname'];?>">Read more...</a></p>
                     </div>
                     <div class="widget span3">
                         <h4>Connect With Us</h4>
                         <div class="facebook">
-                        	<div class="fb-like-box" data-href="https://www.facebook.com/helloaicc" data-width="250" data-height="220" data-colorscheme="light" data-show-faces=
+                        	<div class="fb-like-box" data-href="https://www.facebook.com/krishighar" data-width="250" data-height="220" data-colorscheme="light" data-show-faces=
                             "true" data-header="false" data-stream="false" data-show-border="true"></div>
                         </div>
                     </div>
@@ -169,15 +156,15 @@
                 <div class="footer-border"></div>
                 <div class="row">
                     <div class="copyright span4">
-                        <p>Copyright 20<?=date("y");?>. Agriculture Information and Communication Centre - All rights reserved. Managed by: <span style="color:#9d426b">IT Section</span>.</p>
+                        <p>Copyright 20<?=date("y");?>. Irrigation and Water Resource Management Project - All rights reserved. Powered by: <span style="color:#9d426b"><a href="http://www.krishighar.com">Team Krishighar</a></span>.</p>
                     </div>
                     <!--<audio controls><source src="audio.mp3" type="audio/mpeg"></audio>-->
                     <div class="social span8">
-                        <a class="facebook" target="_blank" href="https://www.facebook.com/helloaicc" title="Facebook Page"></a>
-                        <a class="twitter" target="_blank" href="https://www.twitter.com/helloaicc" title="Twitter"></a>
-                        <a class="googleplus" target="_blank" href="https://www.googleplus.com/helloaicc" title="Google Plus"></a>
-                        <a class="youtube" target="_blank" href="https://www.youtube.com/helloaicc" title="Youtube Channel"></a>
-                        <a class="skype" target="_blank" href="https://www.skype.com/helloaicc" title="Skype"></a>
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/iwrmp" title="Facebook Page"></a>
+                        <a class="twitter" target="_blank" href="https://www.twitter.com/iwrmp" title="Twitter"></a>
+                        <a class="googleplus" target="_blank" href="https://www.googleplus.com/iwrmp" title="Google Plus"></a>
+                        <a class="youtube" target="_blank" href="https://www.youtube.com/iwrmp" title="Youtube Channel"></a>
+                        <a class="skype" target="_blank" href="https://www.skype.com/iwrmp" title="Skype"></a>
                     </div>
                 </div>
             </div>
