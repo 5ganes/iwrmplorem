@@ -62,7 +62,7 @@
             <div class="header row" style="width:100%">
                 <div class="span12" style="width:100%">
                     <div class="navbar">
-                        <div class="navbar-inner" style="background:#2d842d">
+                        <div class="navbar-inner" style="background:#2269b1">
                             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>

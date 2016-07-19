@@ -37,7 +37,7 @@ display: inline-block;
 	
 /*1st sub level menu*/
 .ddsmoothmenu ul li ul{
-background: none repeat scroll 0 0 #2d842d;
+background: none repeat scroll 0 0 #448fdb;
     display: none;
     left: 0;
     margin-top: 0;
@@ -48,8 +48,8 @@ background: none repeat scroll 0 0 #2d842d;
 
 /*Sub level menu list items (undo style from Top level List Items)*/
 .ddsmoothmenu ul li ul li{
-background: #2d842d;
-    border-bottom: 1px solid #267126;
+background: #448fdb;
+    border-bottom: 1px solid #2269b1;
     border-radius: 4px;
     display: list-item;
     float: none;

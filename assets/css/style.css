@@ -68,19 +68,19 @@ strong { font-weight: bold; }
 .header ul.nav li.current-page a {
     padding-top: 25px;
     border-top: 5px solid #9d426b;
-    background: #f8f8f8;
+    background: #448fdb;
 }
 
 .header ul.nav li:hover {
-    background: #267126;
+    background: #448fdb;
 }
 .header ul.nav li:hover a{
 	color:#fff;
 }
 
 .header ul.nav li a:hover {
-    background: #267126;
-    color: #fff;
+    background: #448fdb;
+    color: #ddebf9;
 }
 
 .header ul.nav li a i {
@@ -97,7 +97,7 @@ strong { font-weight: bold; }
 }
 .header ul.nav li:hover ul li a:hover {
 	background:none;
-    color:#ADADAD;
+    color:#cbe0f5;
 }
 
 

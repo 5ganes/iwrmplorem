@@ -34,7 +34,7 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="A">
                                 <style type="text/css">
-                                    .span3 h4.tit {text-align: left;margin: 0;background: #2D842D;color: white;padding: 10px;}
+                                    .span3 h4.tit {text-align: left;margin: 0;background: #2269b1;color: white;padding: 10px;}
                                 </style>
                                 <?php $chief=$groups->getById(CHIEF); $chief=$conn->fetchArray($chief);?>
                                 <h4 class="tit"><?=$chief['name'];?></h4>
