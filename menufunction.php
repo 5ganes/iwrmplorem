@@ -1,5 +1,5 @@
 <?php
-function createMenu($parentId, $groupType)
+function createMenu($parentId, $groupType,$lan)
 {
 	global $groups;
 	global $conn;
@@ -15,13 +15,13 @@ function createMenu($parentId, $groupType)
 	while($groupRow = $conn->fetchArray($groupResult))
 	{?>
 		<li>
-    	<a href="<? if($groupRow['id']==1){ echo "#"; }else{ echo $groupRow['urlname'];}?>" <? if($parentId==1022){?>target="_blank"<? }?>>
-			<? if($parentId==0){?><i class="<? //include("menuIcon.php"); ?>"></i><br /><? }?><?=$groupRow['name'];?>
+    	<a href="<? if($groupRow['id']==1){ echo "#"; }else{ echo $groupRow['urlname'];}?>" <? if($parentId==1022){?>target="_blank"<? }?>><i class="<? //include("menuIcon.php"); ?>"></i><br />
+			<? if($lan=='en') echo $groupRow['nameen']; else echo $groupRow['name'];?>
       	</a>
 		<?
 		if($groupRow['linkType']=="Normal Group"){
 			if($groupRow['id']!=PUBLICATION)
-				createSubMenu($groupRow['id'], $groupType);
+				createSubMenu($groupRow['id'], $groupType,$lan);
 		}
 		echo "</li>\n";
 	}
@@ -29,7 +29,7 @@ function createMenu($parentId, $groupType)
 		echo '</ul>';
 }
 
-function createSubMenu($parentId, $groupType)
+function createSubMenu($parentId, $groupType,$lan)
 {
 	global $groups;
 	global $conn;
@@ -46,7 +46,7 @@ function createSubMenu($parentId, $groupType)
 	{?>
 		<li>
     	<a href="<? if($groupRow['id']==1){ echo "#"; }else if($groupRow['id']==1009){ echo "publications.php";}else{ echo $groupRow['urlname'];}?>" <? if($parentId==1022){?>target="_blank"<? }?>>
-			<? if($parentId==0){?><i class="<? include("menuIcon.php"); ?>"></i><br /><? }?><?=$groupRow['name'];?>
+			<? if($lan=='en') echo $groupRow['nameen']; else echo $groupRow['name'];?>
       	</a>
 		<?
 		if($groupRow['linkType']=="Normal Group")

@@ -100,8 +100,8 @@ function getAndPut(url, intoDiv)
 		if (xmlHttp.readyState==4)
 		{ 
 			intoDiv.innerHTML = xmlHttp.responseText;
-			CKEDITOR.replace( 'shortcontents');
-			CKEDITOR.replace( 'contents' );
+			CKEDITOR.replace( 'contents');
+			CKEDITOR.replace( 'contentsen');
 		}
 	};
 	xmlHttp.open("GET",url,true);

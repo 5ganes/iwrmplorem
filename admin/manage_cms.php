@@ -111,6 +111,8 @@ if (isset($_POST['save']))
 {
  $contents = "";
  $shortcontents = "";
+ $contentsen = "";
+ $shortcontentsnen = "";
  
  if ($_POST['linkType'] == "Link")
   $contents = $_POST['directLink'];
@@ -119,12 +121,16 @@ if (isset($_POST['save']))
  if ($_POST['linkType'] == "Contents Page")
  {
  	$shortcontents = $_POST['shortcontents'];
-  $contents = $_POST['contents'];
+  	$contents = $_POST['contents'];
+	$shortcontentsen = $_POST['shortcontentsen'];
+  	$contentsen = $_POST['contentsen'];
  }
  if ($_POST['linkType'] == "Normal Group")
  {
  	$shortcontents = $_POST['shortcontents'];
-  $contents = $_POST['contents'];
+  	$contents = $_POST['contents'];
+	$shortcontentsen = $_POST['shortcontentsen'];
+  	$contentsen = $_POST['contentsen'];
  }
   
  if (isset($_POST['id']))
@@ -213,7 +219,7 @@ if (isset($_POST['save']))
 	
   if($groups -> isUnique($_POST['id'], $_POST['urlname']) && !empty($_POST['urlname']))
 	{
-		$groups->save($_POST['id'], $_POST['name'], $_POST['urlname'], "",  $_POST['parentId'], "", $shortcontents, $contents, $_POST['weight'], $_POST['pageTitle'], $_POST['pageKeyword'], $_POST['featured'], $_POST['display']);
+		$groups->save($_POST['id'], $_POST['name'], $_POST['nameen'], $_POST['urlname'], "",  $_POST['parentId'], "", $shortcontents, $shortcontentsen, $contents, $contentsen, $_POST['weight'], $_POST['pageTitle'], $_POST['pageKeyword'], $_POST['featured'], $_POST['display']);
 		
 		$groups -> saveImage($_POST['id']);
 		
@@ -247,7 +253,7 @@ else //add new code goes here...
 	
  	if(empty($msg))
 	{
-		$newId = $groups->save("", $_POST['name'], $_POST['urlname'], $_GET['groupType'], $_POST['parentId'], $_POST['linkType'], $shortcontents, $contents, $_POST['weight'], $_POST['pageTitle'], $_POST['pageKeyword'], $_POST['featured'], $_POST['display']);
+		$newId = $groups->save("", $_POST['name'], $_POST['nameen'], $_POST['urlname'], $_GET['groupType'], $_POST['parentId'], $_POST['linkType'], $shortcontents, $shortcontentsen, $contents, $contentsen, $_POST['weight'], $_POST['pageTitle'], $_POST['pageKeyword'], $_POST['featured'], $_POST['display']);
 		
 		$groups->saveImage($newId);
 			

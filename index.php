@@ -1,11 +1,20 @@
 <? include("clientobjects.php"); ?>
+<?php
+$lan=$_GET['lan'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
 
         <meta charset="utf-8">
-        <title>Irrigation and Water Resource Management Project</title>
+        <title>
+            <?php if($lan=='en')
+                echo 'Irrigation and Water Resource Management Project';
+            else
+                echo 'सिचाई तथा जलश्रोत व्यवस्थापन आयोजना';
+        ?>
+        </title>
         <? include("baselocation.php"); ?>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
@@ -75,7 +84,7 @@
                             	<div id="menu">
         							<div>
                             			<div id="smoothmenu1" class="ddsmoothmenu">
-                                    		<? createMenu(0, "Header"); ?>
+                                    		<? createMenu(0, "Header",$lan); ?>
                                			</div>
                                  	</div>
                               	</div>
@@ -89,15 +98,27 @@
         <div class="page-title" style="padding:8px 0 0 0">
             <div class="container">
                 <div class="row">
-                    <div class="span12">
+                    
+                    <div class="span9">
                         <h5 style="margin:0">
                         	<marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();">
 								<? $hot=$groups->getById(HOT_NEWS); $hotGet=$conn->fetchArray($hot);?>
 								<a style="font-size:17px" href="<?=$hotGet['urlname'];?>">
-									<? echo $hotGet['shortcontents'];?>
+									<? if($lan!='en') echo $hotGet['shortcontents']; else echo $hotGet['shortcontentsen']?>
                                	</a>
                          	</marquee>
                        	</h5>
+                    </div>
+
+                    <div class="span3">
+                        <h5 style="margin:0">
+                            <?php if($lan!='en'){?>
+                                Language: <a href="<?=SITE_URL?>en">English</a>
+                            <?php }
+                            else{?>
+                                Language: <a href="<?=SITE_URL?>">Nepali</a>
+                            <?php }?>
+                        </h5>
                     </div>
                     
                 </div>

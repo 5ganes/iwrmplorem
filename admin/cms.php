@@ -143,7 +143,10 @@ if (isset($_GET['groupType']))
 																	?>
                                   <tr>
                                     <td width="90"><strong>Name : </strong></td>
-                                    <td><input type="text" name="name" value="<?php echo $groupRow['name']; ?>" class="text" onchange="copySame('urlname', this.value);"></td>
+                                    <td>
+                                    	Nepali: <input type="text" name="name" value="<?php echo $groupRow['name']; ?>" class="text" onchange="copySame('urlname', this.value);"> &nbsp;
+                                  		English: <input type="text" name="nameen" value="<?php echo $groupRow['nameen']; ?>" class="text" />
+                                    </td>
                                   </tr>
 																	<tr>
                                     <td><strong>Alias Name :</strong> </td>

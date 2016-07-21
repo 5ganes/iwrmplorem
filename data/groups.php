@@ -1,18 +1,22 @@
 <?php
 class Groups
 {
-	function save($id, $name, $urlname, $type, $parentId, $linkType, $shortcontents, $contents, $weight, $pageTitle, $pageKeyword, $featured, $display)
+	function save($id, $name, $nameen, $urlname, $type, $parentId, $linkType, $shortcontents, $shortcontentsen, $contents, $contentsen, $weight, $pageTitle, $pageKeyword, $featured, $display)
 	{
 		global $conn;
 		
 		$id = cleanQuery($id);
 		$name = cleanQuery($name);
+		$namenp = cleanQuery($namenp);
+		$nameen = cleanQuery($nameen);
 		$urlname = cleanQuery($urlname);
 		$type = cleanQuery($type);
 		$parentId = cleanQuery($parentId);
 		$linkType = cleanQuery($linkType);
 		$shortcontents = cleanQuery($shortcontents);
 		$contents = cleanQuery($contents);
+		$shortcontentsen = cleanQuery($shortcontentsen);
+		$contentsen = cleanQuery($contentsen);
 		$weight = cleanQuery($weight);
 		$pageTitle = cleanQuery($pageTitle);
 		$pageKeyword = cleanQuery($pageKeyword);
@@ -23,10 +27,13 @@ class Groups
 		$sql = "UPDATE groups
 						SET
 							name = '$name',
+							nameen = '$nameen',
 							urlname = '$urlname',
 							parentId='$parentId',
 							shortcontents = '$shortcontents',
 							contents = '$contents',
+							shortcontentsen = '$shortcontentsen',
+							contentsen = '$contentsen',
 							weight = '$weight',
 							pageTitle = '$pageTitle',
 							pageKeyword = '$pageKeyword',
@@ -38,12 +45,15 @@ class Groups
 		$sql = "INSERT INTO groups 
 						SET
 							name = '$name',
+							nameen = '$nameen',
 							urlname = '$urlname',
 							type='$type',
 							parentId='$parentId',
 							linkType = '$linkType',
 							shortcontents = '$shortcontents',
 							contents = '$contents',
+							shortcontentsen = '$shortcontentsen',
+							contentsen = '$contentsen',
 							weight = '$weight',
 							pageTitle = '$pageTitle',
 							pageKeyword = '$pageKeyword',

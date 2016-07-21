@@ -37,11 +37,11 @@
                                     .span3 h4.tit {text-align: left;margin: 0;background: #2269b1;color: white;padding: 10px;}
                                 </style>
                                 <?php $chief=$groups->getById(CHIEF); $chief=$conn->fetchArray($chief);?>
-                                <h4 class="tit"><?=$chief['name'];?></h4>
+                                <h4 class="tit"><? if($lan!='en') echo $chief['name']; else $chief['nameen'];?></h4>
                                 <img src="<?=CMS_GROUPS_DIR.$chief['image'];?>" title="" alt="" style="margin: 0.8% 2% 0 1%;
                                 width: 102px; height:110px;">
                                 <p style="text-align:justify; font-size:17px">
-                                    <?=$chief['shortcontents'];?>...<br />
+                                    <? if($lan!='en') echo $chief['shortcontents']; else $chief['shortcontentsen'];?>...<br />
                                     <a class="violet" style="float:right" href="<?=$chief['urlname'];?>">[ Detail ]</a>
                                 </p>
                             </div>
