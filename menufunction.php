@@ -15,7 +15,7 @@ function createMenu($parentId, $groupType,$lan)
 	while($groupRow = $conn->fetchArray($groupResult))
 	{?>
 		<li>
-    	<a href="<? if($groupRow['id']==1){ echo "#"; }else{ echo $groupRow['urlname'];}?>" <? if($parentId==1022){?>target="_blank"<? }?>><i class="<? //include("menuIcon.php"); ?>"></i><br />
+    	<a href="<? if($groupRow['id']==1){ echo "#"; }else{ if($lan=='en') echo 'en/'; echo $groupRow['urlname'];}?>" <? if($parentId==1022){?>target="_blank"<? }?>><i class="<? //include("menuIcon.php"); ?>"></i><br />
 			<? if($lan=='en') echo $groupRow['nameen']; else echo $groupRow['name'];?>
       	</a>
 		<?
@@ -45,7 +45,7 @@ function createSubMenu($parentId, $groupType,$lan)
 	while($groupRow = $conn->fetchArray($groupResult))
 	{?>
 		<li>
-    	<a href="<? if($groupRow['id']==1){ echo "#"; }else if($groupRow['id']==1009){ echo "publications.php";}else{ echo $groupRow['urlname'];}?>" <? if($parentId==1022){?>target="_blank"<? }?>>
+    	<a href="<? if($groupRow['id']==1){ echo "#"; }else if($groupRow['id']==1009){ echo "publications.php";}else{ if($lan=='en') echo 'en/'; echo $groupRow['urlname'];}?>" <? if($parentId==1022){?>target="_blank"<? }?>>
 			<? if($lan=='en') echo $groupRow['nameen']; else echo $groupRow['name'];?>
       	</a>
 		<?

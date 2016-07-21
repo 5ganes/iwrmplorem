@@ -1,3 +1,4 @@
+<?=$_GET['query'];?>
 <? include("clientobjects.php"); ?>
 <?php
 $lan=$_GET['lan'];
@@ -103,7 +104,7 @@ $lan=$_GET['lan'];
                         <h5 style="margin:0">
                         	<marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();">
 								<? $hot=$groups->getById(HOT_NEWS); $hotGet=$conn->fetchArray($hot);?>
-								<a style="font-size:17px" href="<?=$hotGet['urlname'];?>">
+								<a style="font-size:17px" href="<? if($lan=='en') echo 'en/'; echo $hotGet['urlname'];?>">
 									<? if($lan!='en') echo $hotGet['shortcontents']; else echo $hotGet['shortcontentsen']?>
                                	</a>
                          	</marquee>
@@ -150,15 +151,15 @@ $lan=$_GET['lan'];
                 <div class="row">
                     <div class="widget span3">
                         <? $about=$groups->getById(ABOUTAICC); $aboutGet=$conn->fetchArray($about); ?>
-                        <h4><?=$aboutGet['name'];?></h4>
-                        <p><?=substr($aboutGet['shortcontents'],0,280);?></p>
-                        <p><a href="<?=$aboutGet['urlname'];?>">Read more...</a></p>
+                        <h4><? if($lan!='en') echo $aboutGet['name']; else echo $aboutGet['nameen'];?></h4>
+                        <p><? if($lan!='en') echo $aboutGet['shortcontents']; else echo $aboutGet['shortcontentsen']?></p>
+                        <p><a href="<? if($lan=='en') echo 'en/'; echo $aboutGet['urlname'];?>">Read more...</a></p>
                     </div>
                     <div class="widget span3">
                         <? $notice=$groups->getById(NOTICE); $noticeGet=$conn->fetchArray($notice); ?>
-                        <h4><?=$noticeGet['name'];?></h4>
-                        <p><?=substr($noticeGet['shortcontents'],0,280);?></p>
-                        <p><a href="<?=$noticeGet['urlname'];?>">Read more...</a></p>
+                        <h4><? if($lan!='en') echo $noticeGet['name']; else echo $noticeGet['nameen'];?></h4>
+                        <p><? if($lan!='en') echo $noticeGet['shortcontents']; else echo $noticeGet['shortcontentsen']?></p>
+                        <p><a href="<? if($lan=='en') echo 'en/'; echo $noticeGet['urlname'];?>">Read more...</a></p>
                     </div>
                     <div class="widget span3">
                         <h4>Connect With Us</h4>
@@ -169,8 +170,8 @@ $lan=$_GET['lan'];
                     </div>
                     <div class="widget span3">
                         <? $contact=$groups->getById(CONTACT); $contactGet=$conn->fetchArray($contact); ?>
-                        <h4><?=$contactGet['name'];?></h4>
-                        <?=$contactGet['shortcontents'];?>
+                        <h4><? if($lan!='en') echo $contactGet['name']; else echo $contactGet['nameen'];?></h4>
+                        <? if($lan!='en') echo $contactGet['shortcontents']; else echo $contactGet['shortcontentsen']?>
                         
                     </div>
                 </div>

@@ -37,12 +37,12 @@
                                     .span3 h4.tit {text-align: left;margin: 0;background: #2269b1;color: white;padding: 10px;}
                                 </style>
                                 <?php $chief=$groups->getById(CHIEF); $chief=$conn->fetchArray($chief);?>
-                                <h4 class="tit"><? if($lan!='en') echo $chief['name']; else $chief['nameen'];?></h4>
+                                <h4 class="tit"><? if($lan!='en') echo $chief['name']; else echo $chief['nameen'];?></h4>
                                 <img src="<?=CMS_GROUPS_DIR.$chief['image'];?>" title="" alt="" style="margin: 0.8% 2% 0 1%;
                                 width: 102px; height:110px;">
                                 <p style="text-align:justify; font-size:17px">
-                                    <? if($lan!='en') echo $chief['shortcontents']; else $chief['shortcontentsen'];?>...<br />
-                                    <a class="violet" style="float:right" href="<?=$chief['urlname'];?>">[ Detail ]</a>
+                                    <? if($lan!='en') echo $chief['shortcontents']; else echo $chief['shortcontentsen'];?>...<br />
+                                    <a class="violet" style="float:right" href="<? if($lan=='en') echo 'en/'; echo $chief['urlname'];?>">[ Detail ]</a>
                                 </p>
                             </div>
                             
@@ -58,10 +58,10 @@
 <!--welcome message-->
 <div class="presentation container" style="margin-top:5px;">
 	<? $welcome=$groups->getById(WELCOME); $welcomeGet=$conn->fetchArray($welcome); ?>
-    <h2 style="color:#1F9B00"><?=$welcomeGet['name'];?></h2>
+    <h2 style="color:#1F9B00"><? if($lan!='en') echo $welcomeGet['name']; else echo $welcomeGet['nameen'];?></h2>
     <p style="font-size:17px; text-align:justify; line-height:25px; font-style:normal">
-   		<?=$welcomeGet['shortcontents'];?> <br />
-        <a class="violet" href="<?=$welcomeGet['urlname'];?>" style="float:right">[ Detail ]</a>
+   		<? if($lan!='en') echo $welcomeGet['shortcontents']; else echo $welcomeGet['shortcontentsen'];?> <br />
+        <a class="violet" href="<? if($lan=='en') echo 'en/'; echo $welcomeGet['urlname'];?>" style="float:right">[ Detail ]</a>
     </p>
 </div>
 
@@ -88,16 +88,16 @@
     <div class="row">
         
         <div class="testimonial-list span3" style="margin-top:15px;">
-        <h4 style="margin-top:0">सुचना अधिकारी</h4>
+        <?php $info_officer=$groups->getById(INFO_OFFICER); $info_officer=$conn->fetchArray($info_officer);?>
+        <h4 style="margin-top:0"><? if($lan!='en') echo $info_officer['name']; else echo $info_officer['nameen'];?></h4>
             <div class="tabbable tabs-below">
                 <div class="tab-content">
                     <div class="tab-pane active" id="A">
-                        <?php $info_officer=$groups->getById(INFO_OFFICER); $info_officer=$conn->fetchArray($info_officer);?>
                         <img src="<?=CMS_GROUPS_DIR.$info_officer['image'];?>" title="" alt="" style="margin: 0.8% 2% 0 1%;
                         width: 102px; height:110px;">
                         <p style="text-align:justify; font-size:17px">
-                            <?=$info_officer['shortcontents'];?>...<br />
-                            <a class="violet" style="float:right" href="<?=$info_officer['urlname'];?>">[ Detail ]</a>
+                            <? if($lan!='en') echo $info_officer['shortcontents']; else echo $info_officer['shortcontents'];?>...<br />
+                            <a class="violet" style="float:right" href="<? if($lan=='en') echo 'en/'; echo $info_officer['urlname'];?>">[ Detail ]</a>
                         </p>
                     </div>
                     
@@ -107,37 +107,40 @@
         </div>
 
         <div class="widget span3">
-            <h4>समाचार तथा सुचना</h4>                       
+            <?php $newsName=$groups->getById(NEWS_NOTICES); $newsName=$conn->fetchArray($newsName);?>
+            <h4><? if($lan!='en') echo $newsName['name']; else echo $newsName['nameen'];?></h4>                       
             <div class="show-links">
                 <ul>
                     <? $news=$groups->getByParentIdWithLimit(NEWS_NOTICES,6);
                     while($newsGet=$conn->fetchArray($news))
                     {?>
-                        <li><a href="<?=$newsGet['urlname'];?>" target="_blank" title="<?=$newsGet['name'];?>"><?=$newsGet['name'];?></a></li>
+                        <li><a href="<? if($lan=='en') echo 'en/'; echo $newsGet['urlname'];?>" target="_blank" title="<?=$newsGet['name'];?>"><?=$newsGet['name'];?></a></li>
                     <? }?>
                 </ul>
             </div>
         </div>
         <div class="widget span3">
-            <h4>सम्बन्धित लिङ्क्स</h4>                       
+            <?php $linkName=$groups->getById(LINKS); $linkName=$conn->fetchArray($linkName);?>
+            <h4><? if($lan!='en') echo $linkName['name']; else echo $linkName['nameen'];?></h4>                       
             <div class="show-links">
                 <ul>
                     <? $link=$groups->getByParentIdWithLimit(LINKS,6);
                     while($linkGet=$conn->fetchArray($link))
                     {?>
-                        <li><a href="<?=$linkGet['contents'];?>" target="_blank" title="<?=$linkGet['name'];?>"><?=$linkGet['name'];?></a></li>
+                        <li><a href="<? echo $linkGet['urlname'];?>" target="_blank" title="<? if($lan!='en') echo $linkGet['name']; else echo $linkGet['nameen'];?>"><? if($lan!='en') echo $linkGet['name']; else echo $linkGet['nameen'];?></a></li>
                     <? }?>
                 </ul>
             </div>
         </div>
         <div class="widget span3">
-            <h4>प्रकाशन</h4>                       
+            <?php $pub=$groups->getById(PUBLICATION); $pub=$conn->fetchArray($pub);?>
+            <h4><? if($lan!='en') echo $pub['name']; else echo $pub['nameen'];?></h4>                     
             <div class="show-links">
                 <ul>
                     <? $pub=$groups->getByParentIdWithLimit(PUBLICATION,4);
                     while($pubGet=$conn->fetchArray($pub))
                     {?>
-                        <li><a href="<?=CMS_FILES_DIR.$pubGet['contents'];?>" target="_blank" title="<?=$pubGet['name'];?>"><?=$pubGet['name'];?></a></li>
+                        <li><a href="<? echo $pubGet['urlname'];?>" target="_blank" title="<? if($lan!='en') echo $pubGet['name']; else echo $pubGet['nameen'];?>"><? if($lan!='en') echo $pubGet['name']; else echo $pubGet['nameen'];?></a></li>
                     <? }?>
                 </ul>
             </div>
