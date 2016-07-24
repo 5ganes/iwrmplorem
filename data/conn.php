@@ -9,10 +9,10 @@
 		var $db;
 		
 		function Dbconn(){
-			/*$this->host = "localhost";
-			$this->uname = "aiccgov_krishigh"; 		
-			$this->psw = "m%aLO{O7vCMD";					
-			$this->dbname = "aiccgov_krishigh";*/
+			// $this->host = "localhost";
+			// $this->uname = "iwrmgov_krishi"; 		
+			// $this->psw = "X}u@#iA43)n3";					
+			// $this->dbname = "iwrmgov_krishi";
 			$this->host = "localhost";
 			$this->uname = "root"; 		
 			$this->psw = "";					
