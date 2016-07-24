@@ -3,7 +3,7 @@
         <div class="row">
             <div class="span12">
                 <i class="icon-flag page-title-icon"></i>
-                <h2>Photo Gallery / AICC, Hariharbhawan, Lalitpur</h2>
+                <h2>Photo Gallery / IWRMP</h2>
             </div>
         </div>
     </div>
