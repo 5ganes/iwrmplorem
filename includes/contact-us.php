@@ -49,7 +49,13 @@ function validateform(fm){
         <div class="row">
             <div class="span12">
                 <i class="icon-flag page-title-icon"></i>
-                <h2>Our Contact Information</h2>
+                <h2>
+                  <?php if($lan!='en')
+                    echo $pageRow['name'];
+                  else
+                    echo $pageRow['nameen'];
+                  ?>
+                </h2>
             </div>
         </div>
     </div>
@@ -60,7 +66,7 @@ function validateform(fm){
     <div class="row">
         <div class="services-full-width-text span12">
             <p>
-            	<?=$pageRow['contents'];?>
+            	<? if($lan!='en') echo $pageRow['contents']; else echo $pageRow['contentsen'];?>
           	</p>
             <p>
             	

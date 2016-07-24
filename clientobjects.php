@@ -51,11 +51,14 @@ if (!empty($query)) {
 		
 		$pageId = $pageRow['id'];
 		$pageName = $pageRow['name'];
+		$pageNameEn = $pageRow['nameen'];
 		$pageUrlName = $pageRow['urlname'];
 		$pageType = $pageRow['type'];
 		$pageParentId = $pageRow['parentId'];
 		$pageShortContents = $pageRow['shortcontents'];
+		$pageShortContentsEn = $pageRow['shortcontentsen'];
 		$pageContents = $pageRow['contents'];
+		$pageContentsEn = $pageRow['contentsen'];
 		$pageLinkType = $pageRow['linkType'];
 		$pageWeight = $pageRow['weight'];
 		$pageDate = $pageRow['onDate'];

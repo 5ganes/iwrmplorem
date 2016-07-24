@@ -7,8 +7,12 @@ RewriteEngine On
 # RewriteBase /
 
 #for english
-RewriteRule ^en index.php?lan=en [L]
+RewriteRule ^en/home index.php?lan=en [L]
+RewriteRule ^en/publications index.php?action=publications [L]
+RewriteRule ^en/bills index.php?action=bills [L]
+RewriteRule ^en/contact-us index.php?action=contact-us [L]
 RewriteRule ^en/([-A-Za-z0-9]+)$ index.php?lan=en&query=$1 [L]
+RewriteRule ^en index.php?lan=en [L]
 
 RewriteRule ^signup index.php?action=sign_up [L]
 RewriteRule ^prelogin index.php?action=pre_login [L]

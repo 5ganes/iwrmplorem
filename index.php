@@ -1,4 +1,3 @@
-<?=$_GET['query'];?>
 <? include("clientobjects.php"); ?>
 <?php
 $lan=$_GET['lan'];
@@ -137,8 +136,8 @@ $lan=$_GET['lan'];
 			else if(isset($pageLinkType))
 			{
 				if ($pageLinkType == ""){}
-				else if ($pageLinkType == "Product"){ include("includes/showtrip.php"); }
-				else if ($pageLinkType == "PackageRegion"){ include("includes/packageregion.php"); }
+				// else if ($pageLinkType == "Product"){ include("includes/showtrip.php"); }
+				// else if ($pageLinkType == "PackageRegion"){ include("includes/packageregion.php"); }
 				else{ include("includes/cmspage.php"); }
 			}
 			else{ include("includes/main.php"); }

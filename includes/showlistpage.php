@@ -5,7 +5,7 @@
         <div class="row">
             <div class="span12">
                 <i class="icon-flag page-title-icon"></i>
-                <h2><?php echo $pageName; ?></h2>
+                <h2><?php if($lan!='en') echo $pageName; else echo $pageNameEn;?></h2>
             </div>
         </div>
     </div>

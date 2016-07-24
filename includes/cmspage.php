@@ -5,6 +5,7 @@ $pageRow = $conn->fetchArray($pageResult);
 $pageParentId = $pageRow['parentId'];
 $pageDate = $pageRow['onDate'];
 $pageContents = $pageRow['contents'];
+$pageContentsEn = $pageRow['contentsen'];
 
 if ($pageLinkType == "Normal Group") {
  include ("includes/showsubgroups.php");

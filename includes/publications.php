@@ -7,7 +7,11 @@
         <div class="row">
             <div class="span12">
                 <i class="icon-flag page-title-icon"></i>
-                <h2>Our Publications</h2>
+                <h2>
+                <?php if($lan!='en')
+                    echo 'प्रकाशन';
+                else echo 'Our Publications';?>
+                </h2>
             </div>
         </div>
     </div>
