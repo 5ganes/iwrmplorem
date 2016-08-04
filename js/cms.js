@@ -57,7 +57,7 @@ function addVideo()
 	newDiv = document.createElement("div");
 	
 	str = "<div style=''>Link : </div>";
-	str += "<div style='float:left; padding-bottom:5px;'><textarea name='videoUrl[]' rows='4' cols='110'></textarea></div>";
+	str += "<div style='float:left; padding-bottom:5px;'><textarea name='videoUrl[]' rows='4' cols='100'></textarea></div>";
 	str += "<hr style='clear: both;'>";
 
 	newDiv.innerHTML = str;
@@ -173,7 +173,7 @@ function changeLinkType(sbox)
 	{
 		document.getElementById('pageDetails').style.display = 'block';
 		
-		myDiv = document.getElementById('normalGroupDiv');
+		myDiv = document.getElementById('fckEditor');
 		myDiv.style.display = 'block';
 		
 		document.getElementById('displaytype').style.display = 'block';
