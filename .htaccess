@@ -20,6 +20,8 @@ RewriteRule ^makelogin index.php?action=make_log_in [L]
 RewriteRule ^forgotpassword index.php?action=forgot_password [L]
 RewriteRule ^home index.php [L]
 
+RewriteRule ^procurement/([-A-Za-z0-9]+)$ index.php?action=procurement_sub&url=$1 [L]
+
 #for bills
 RewriteRule ^bills index.php?action=bills [L]
 

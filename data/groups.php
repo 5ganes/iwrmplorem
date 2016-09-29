@@ -1515,6 +1515,38 @@ class Groups
 		return $result;
 	}
 	
+	function getNewCountByParentId($parentId){
+		global $conn;
+		// echo $parentId; die();
+		$date=date("Y-m-d");
+		// echo $date; die();
+		$sql="select count(id) as newCount from groups where parentId='$parentId' and date_add(onDate,INTERVAL 3 DAY)>='$date'";
+		// echo $sql;
+		$result=$conn->exec($sql);
+		$data=$conn->fetchArray($result);
+		return $data['newCount'];
+	}
+	
+	function getNewCountByParentIdMainMenu($parentId){
+		global $conn;
+		// echo $parentId; die();
+		$date=date("Y-m-d");
+		// echo $date; die();
+		$sub=$conn->exec("select * from groups where parentId='$parentId'");
+		$return=0;
+		// echo $conn->numRows($sub);
+		if($conn->numRows($sub)>0){
+			while($subGet=$conn->fetchArray($sub)){
+				$pId=$subGet['id'];
+				$sql="select id from groups where parentId='$pId' and date_add(onDate,INTERVAL 3 DAY)>='$date'";
+				// echo $sql;
+				$result=$conn->exec($sql);
+				// echo $conn->numRows($result);
+				if($conn->numRows($result)>0) $return=1;
+			}
+		}
+		return $return;
+	}
 	
 }
 ?>

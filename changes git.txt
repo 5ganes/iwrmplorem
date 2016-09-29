@@ -1,0 +1,1 @@
+add field groupType in tbl_agrigroups after male number

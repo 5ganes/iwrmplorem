@@ -52,6 +52,31 @@ $lan=$_GET['lan'];
 			})
 		</script>
         <!--end of menubar jquery and css-->
+
+        <style type="text/css">
+
+            .new {
+                color:red;
+                font-weight: bold;
+                animation-name: example;
+                animation-duration: 30s;
+            }
+            @keyframes example {
+                0%   {color: red;} 2%   {color: yellow} 4%  {color: red;} 6%  {color: yellow;}
+                8%  {color: red;} 10%  {color: yellow;} 12% {color: red;} 14% {color: yellow;}
+                16%   {color: red;} 18% {color: yellow;} 20%   {color: red;} 22%   {color: yellow}
+                24%  {color: red;} 26%  {color: yellow;} 28%  {color: red;} 30%  {color: yellow;}
+                32% {color: red;} 34% {color: yellow;} 36%   {color: red;} 38% {color: yellow;}
+                40% {color: red;} 42%   {color: yellow;} 44%   {color: red} 46%  {color: yellow;}
+                48%  {color: red;} 50%  {color: yellow;} 52%  {color: red;} 54% {color: yellow;}
+                56% {color: red;} 58%   {color: yellow;} 60% {color: red;} 62%   {color: yellow;}
+                64%   {color: red} 66%  {color: yellow;} 68%  {color: red;} 70%  {color: yellow;}
+                72%  {color: red;} 74% {color: yellow;} 76% {color: red;} 78%   {color: yellow;}
+                80% {color: red;} 82%   {color: yellow} 84%  {color: red;} 86%  {color: yellow;}
+                88%  {color: red;} 90%  {color: yellow;} 92% {color: red;} 94% {color: yellow;}
+                96%   {color: red;} 98% {color: yellow;} 100%   {color: red;}
+            }
+        </style>
         
     </head>
 
