@@ -2,7 +2,7 @@ AddType text/x-component .htc
 
 RewriteEngine On
 # localhost
- RewriteBase /iwrmp/
+ RewriteBase /iwrm/
 # live
 # RewriteBase /
 

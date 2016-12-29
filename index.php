@@ -1,6 +1,7 @@
 <? include("clientobjects.php"); ?>
 <?php
-$lan=$_GET['lan'];
+if(isset($_GET['lan'])) $lan=$_GET['lan'];
+else $lan='';
 ?>
 <!DOCTYPE html>
 <html lang="en">

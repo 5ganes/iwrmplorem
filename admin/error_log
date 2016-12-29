@@ -1,0 +1,15 @@
+[26-Jul-2016 06:56:26 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 06:58:57 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 07:12:31 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 07:12:34 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 07:28:39 UTC] PHP Warning:  mysql_connect(): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 07:36:03 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 07:36:27 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 07:45:58 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 07:47:04 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 07:50:39 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 08:20:00 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 08:43:12 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[26-Jul-2016 09:30:34 UTC] PHP Warning:  mysql_connect(): Too many connections in /home/iwrmgov/public_html/data/conn.php on line 21
+[06-Sep-2016 10:57:38 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/iwrmgov/public_html/admin/manage_cms.php on line 264
+[06-Sep-2016 10:57:38 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/iwrmgov/public_html/admin/manage_cms.php:264) in /home/iwrmgov/public_html/admin/manage_cms.php on line 313
