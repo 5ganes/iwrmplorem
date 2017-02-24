@@ -104,7 +104,15 @@ else $lan='';
                                 <span class="icon-bar"></span>
                             </a>
                             <h1>
-                                <a class="brand" href="index.php"><img style="width: 400px; height: 90px;padding: 8px 0" src="assets/img/logo.png" style="width:100%" /></a>
+                                <a class="brand" href="index.php">
+                                    <?php
+                                    if($lan=='en'){?>
+                                        <img style="width: 400px; height: 106px;padding: 8px 0" src="assets/img/logo_english.png" style="width:100%" />
+                                    <?php }
+                                    else if($lan==''){?>
+                                        <img style="width: 400px; height: 106px;padding: 8px 0" src="assets/img/logo_nepali.png" style="width:100%" />
+                                    <?php }?>
+                                </a>
                             </h1>
                             <div class="nav-collapse collapse">
                             	<div id="menu">
