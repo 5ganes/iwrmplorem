@@ -20,48 +20,48 @@
 <div class="services-full-width container">
     <div class="row">
         <div class="services-full-width-text span12">
-            <p>
-            	<?
-                	$content=$groups->getById($pageId);
-					$contentGet=$conn->fetchArray($content);
-                    if($lan!='en')
-					   echo $contentGet['contents'];
-					else
-                        echo $contentGet['contentsen'];
+            
+        	<?
+            	$content=$groups->getById($pageId);
+				$contentGet=$conn->fetchArray($content);
+                if($lan!='en')
+				   echo $contentGet['contents'];
+				else
+                    echo $contentGet['contentsen'];
 
-                    $sub=$groups->getByParentId($pageId);
-                    if($conn->numRows($sub)>0){?>
-                        <div class="widget span3" style="clear: both">
-                            <br>                      
-                            <div class="show-links">
-                                <ul>
-                                    <?php
-                                    while($subGet=$conn->fetchArray($sub))
-                                    {?>
-                                        <li><a href="<?=$subGet['urlname'];?>" title="<?=$subGet['name'];?>"><?=$subGet['name'];?></a></li>
-                                    <?php }?>
-                                </ul>
-                            </div>
+                $sub=$groups->getByParentId($pageId);
+                if($conn->numRows($sub)>0){?>
+                    <div class="widget span3" style="clear: both">
+                        <br>                      
+                        <div class="show-links">
+                            <ul>
+                                <?php
+                                while($subGet=$conn->fetchArray($sub))
+                                {?>
+                                    <li><a href="<?=$subGet['urlname'];?>" title="<?=$subGet['name'];?>"><?=$subGet['name'];?></a></li>
+                                <?php }?>
+                            </ul>
                         </div>
-                    <?php }
-                    
-					if($pageId==LINKS)
-					{?>
-						<div class="widget span3">
-                            <h4>Important Links</h4>                       
-                            <div class="show-links">
-                                <ul>
-                                    <? $link=$groups->getByParentId(LINKS);
-                                    while($linkGet=$conn->fetchArray($link))
-                                    {?>
-                                        <li><a href="<?=$linkGet['contents'];?>" title="<?=$linkGet['name'];?>"><?=$linkGet['name'];?></a></li>
-                                    <? }?>
-                                </ul>
-                            </div>
-                    	</div>	
-					<? }
-				?>
-            </p>
+                    </div>
+                <?php }?>
+            
         </div>
     </div>
 </div>
+             
+<?php
+//if($pageId==LINKS)
+// {?>
+    <!-- <div class="widget span3">
+        <h4>Important Links</h4>                       
+        <div class="show-links">
+            <ul>
+                <? $link=$groups->getByParentId(LINKS);
+                while($linkGet=$conn->fetchArray($link))
+                {?>
+                    <li><a href="<?=$linkGet['contents'];?>" title="<?=$linkGet['name'];?>"><?=$linkGet['name'];?></a></li>
+                <? }?>
+            </ul>
+        </div>
+    </div>  --> 
+<? //}?>
