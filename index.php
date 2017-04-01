@@ -107,7 +107,7 @@ else $lan='';
                                 <a class="brand" href="index.php">
                                     <?php
                                     if($lan=='en'){?>
-                                        <img style="width: 400px; height: 106px;padding: 8px 0" src="assets/img/logo_english.png" style="width:100%" />
+                                        <img style="width: 400px; height: 106px;padding: 8px 0" src="assets/img/logo_englishh.png" style="width:100%" />
                                     <?php }
                                     else if($lan==''){?>
                                         <img style="width: 400px; height: 106px;padding: 8px 0" src="assets/img/logo_nepali.png" style="width:100%" />

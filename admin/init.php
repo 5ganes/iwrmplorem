@@ -23,7 +23,7 @@ $enewsletters			= new Enewsletters();
 $testimonials		= new Testimonials();
 $feedbacks			= new Feedbacks();
 
-define (ADMIN_GALLERY_LIMIT,20);
+// define (ADMIN_GALLERY_LIMIT,20);
 
 
 require_once("../data/constants.php");

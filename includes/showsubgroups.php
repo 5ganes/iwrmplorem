@@ -38,7 +38,7 @@
                                     <?php
                                     while($subGet=$conn->fetchArray($sub))
                                     {?>
-                                        <li><a href="<?=$contentGet['urlname'].'/'.$subGet['urlname'];?>" title="<?=$subGet['name'];?>"><?=$subGet['name'];?></a></li>
+                                        <li><a href="<?=$subGet['urlname'];?>" title="<?=$subGet['name'];?>"><?=$subGet['name'];?></a></li>
                                     <?php }?>
                                 </ul>
                             </div>

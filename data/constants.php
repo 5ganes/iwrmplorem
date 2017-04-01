@@ -5,7 +5,7 @@ define("ADMIN_LEFT_WIDTH", "20%");
 define("ADMIN_BODY_WIDTH", "80%");
 define("ADMIN_TITLE", "Admin Control Panel");
 define("PAGE_TITLE", "Irrigation and Water Resource Management Project");
-define("SITE_URL", "http://localhost:8089/iwrm/");
+define("SITE_URL", "http://localhost/iwrm/");
 
 
 ////////////////IMAGE FOLDER LOCATIONS////////////////////////
@@ -18,7 +18,7 @@ define("CMS_TESTIMONIALS_DIR", "files/testimonials/");
 define("CMS_ADDS_DIR", "files/adds/");
 
 define("ADMIN_VIDEO_GALLERY_LIMIT", 9); // VIDEO GALLERY LIMIT FOR ADMIN
-define("ADMIN_GALLERY_LIMIT", 12); // IMAGE GALLERY LIMIT FOR ADMIN
+define("ADMIN_GALLERY_LIMIT", 20); // IMAGE GALLERY LIMIT FOR ADMIN
 define("PAGING_LIMIT", 30); // LISTING TYPE LIMIT FOR CLIENT
 define("LISTING_LIMIT", 6); // IMAGE AND VIDEO GALLERY LIMIT FOR CLIENT
 
