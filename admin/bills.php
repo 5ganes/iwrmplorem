@@ -117,17 +117,30 @@ if($_GET['type']=="del")
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<title><?php echo ADMIN_TITLE; ?></title>
-<link href="../css/admin.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-<!--
-.style1 {
-	color: #FF0000
-}
--->
-</style>
-<script type="text/javascript" src="../js/cms.js"></script>
-<script type="text/javascript" src="../js/jquery.min.js"></script>
+  <title><?php echo ADMIN_TITLE; ?></title>
+  <link href="../css/admin.css" rel="stylesheet" type="text/css">
+  <style type="text/css">
+  <!--
+  .style1 {
+  	color: #FF0000
+  }
+  -->
+  </style>
+  <script type="text/javascript" src="../js/cms.js"></script>
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+  <!--for date picker-->
+  <script type="text/javascript" src="../datepicker/jquery.js"></script>
+  <script type="text/javascript" src="../datepicker/nepali.datepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../datepicker/nepali.datepicker.css" />
+  <script>
+    $(document).ready(function(){
+      $('.nepali-calendar').nepaliDatePicker();
+      $('.collectedDate').nepaliDatePicker();
+    });
+  </script>
+  <!--end date picker-->
+
 </head>
 <body>
 <table width="<?php echo ADMIN_PAGE_WIDTH; ?>" border="0" align="center" cellpadding="0"
@@ -227,7 +240,7 @@ if($_GET['type']=="del")
                               <td class="tahomabold11"><strong> &#2348;&#2367;&#2354; / &#2344;&#2367;&#2357;&#2375;&#2342;&#2344; &#2346;&#2381;&#2352;&#2366;&#2346;&#2381;&#2340; &#2349;&#2319;&#2325;&#2379; &#2350;&#2367;&#2340;&#2367; : <span class="asterisk">*</span></strong></td>
                               <td>
                               		<div style="float:left"><label for="billDate"></label>
-                              		<input type="text" name="billDate" class="text" value="<?=$billDate;?>" /></div> 
+                              		<input type="text" name="billDate" id="nepaliDate" class="nepali-calendar text" value="<?=$billDate;?>" /></div> 
                               </td>
                             </tr>
                             <tr><td></td></tr>

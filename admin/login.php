@@ -19,7 +19,7 @@ require("loginprocess.php");
     <td width="100%" height="300" align="center" valign="middle"><table width="42%"  border="0" align="center" cellpadding="0" cellspacing="3">
       <tr>
         <td><table width="100%"  border="0" cellpadding="4" cellspacing="0" class="tahomabold11">
-              <form action="<?php echo $SERVER['PHP_SELF']; ?>" method="post" name="frmUserLogin">
+              <form action="<?php echo $PHP_SELF; ?>" method="post" name="frmUserLogin">
               <tr>
                 <td colspan="3"  class="heading2" >&nbsp;Administrator Login Console </td>
               </tr>

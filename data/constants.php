@@ -4,7 +4,7 @@ define("ADMIN_PAGE_WIDTH", 1000);
 define("ADMIN_LEFT_WIDTH", "20%");
 define("ADMIN_BODY_WIDTH", "80%");
 define("ADMIN_TITLE", "Admin Control Panel");
-define("PAGE_TITLE", "Irrigation and Water Resource Management Project");
+define("PAGE_TITLE", "DADO Bhaktapur");
 define("SITE_URL", "http://localhost/iwrm/");
 
 
@@ -17,30 +17,37 @@ define("CMS_GROUPS_DIR", "files/groups/");
 define("CMS_TESTIMONIALS_DIR", "files/testimonials/");
 define("CMS_ADDS_DIR", "files/adds/");
 
-define("ADMIN_VIDEO_GALLERY_LIMIT", 9); // VIDEO GALLERY LIMIT FOR ADMIN
+define("ADMIN_VIDEO_GALLERY_LIMIT", 6); // VIDEO GALLERY LIMIT FOR ADMIN
 define("ADMIN_GALLERY_LIMIT", 20); // IMAGE GALLERY LIMIT FOR ADMIN
 define("PAGING_LIMIT", 30); // LISTING TYPE LIMIT FOR CLIENT
-define("LISTING_LIMIT", 6); // IMAGE AND VIDEO GALLERY LIMIT FOR CLIENT
+define("LISTING_LIMIT", 15); // IMAGE AND VIDEO GALLERY LIMIT FOR CLIENT
 
 
-define("SLIDER", 8);
+define("SLIDER", 723);
 define("WELCOME", 176);	
-define("ABOUTAICC",156);
-define("CONTACT", 234);
-define("MESSAGE", 998);
-define("LINKS",1022);
-define("PUBLICATION",1009);
-define("NOTICE", 796);
-define("MAGAZINE", 1073);
-define("PHOTO_GLLERY", 1138);
-define("HOT_NEWS", 1166);
-define("NEWS_NOTICES", 1171);
-define("CHIEF", 998);
-define("INFO_OFFICER", 1187);
+define("CONTACT", 'contact-us');
 
-////////////// FOR KRISHI DIARY
-define("CMS_DIARY_DIR", "files/diary/");
-define("KRISHI_FFEW", 3);
+define("INFO_OFFICER", 362);
+define("LINKS", 363);
+define("NEWS", 321);
+define("INFO_OFFICER", 274);
+define("PHOTO_GALLERY", 625);
+define("PUBLICATION", 338);
+define("YOUTUBE", 373);
+define("VIDEO_GALLERY", 386);
+
+define('MSG_FROM_DG', 274);
+define('MSG_FROM_SPOKEPERSON', 552);
+
+define('NEWS_AND_EVENTS', 574);
+define('NOTICE', 579);
+define('PRESS_RELEASE', 561);
+define('BULLETIN', 580);
+define('HOT_NEWS', 581);
+define('SINGLE_VIDEO', 582);
+define('AUDIO', 585);
+define('VIDEO', 601);
+define('ABOUT', 338);
 
 ///////////////GENERAL CLIENT SIDE CONSTANTS///////////////////
 
@@ -48,11 +55,8 @@ define("KRISHI_FFEW", 3);
 
 
 ////////////////LINKS AND PAGE TYPES////////////////////////
-$groupTypesArray = array("Header", "Other");
+$groupTypesArray = array("Header", "Navigation", "Important_Links", "Other");
 
 $linkTypesArray = array("Normal Group", "Link", "File", "Contents Page", "Gallery", "List", "Video Gallery");
-
-////////////////KRISHI DIARY
-//$krishiDiaryArray = array("Agri Statistics", "Grain Area", "");
 
 ?>

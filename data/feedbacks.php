@@ -1,14 +1,12 @@
 <?php
 class Feedbacks
 {
-	function save($name, $address, $email, $country, $comment)
+	function save($name, $address, $phone, $email, $subject, $comment)
 	{
 		global $conn;
 				
-		$sql = "INSERT INTO feedbacks SET name = '". cleanQuery($name). "', address='". cleanQuery($address) ."',
-				email = '". cleanQuery($email) ."', country='". cleanQuery($country) ."',
-				comment = '". cleanQuery($comment) ."', onDate = now()";
-		
+		$sql = "INSERT INTO feedbacks SET name = '". cleanQuery($name). "', address='". cleanQuery($address) ."', phone = '". cleanQuery($phone) ."', email = '". cleanQuery($email) ."', subject='". cleanQuery($subject) ."', comment = '". cleanQuery($comment) ."', onDate = now()";
+		// echo $sql; die();
 		$conn->exec($sql);
 		
 		return $conn->insertId();

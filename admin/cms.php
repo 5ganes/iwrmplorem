@@ -37,6 +37,7 @@ if (isset($_GET['groupType']))
 	//var CKEDITOR_BASEPATH = '/ckeditor/';
 </script>
 <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
 <table width="<?php echo ADMIN_PAGE_WIDTH; ?>" border="0" align="center" cellpadding="0"

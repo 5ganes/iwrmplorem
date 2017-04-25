@@ -50,4 +50,8 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.extraPlugins = 'richcombo';
 
 	config.enterMode = CKEDITOR.ENTER_BR;
+
+	//manual code
+	config.toolbar_basic = [[ 'Bold','Italic','Underline','Find','Replace','Source']];
+
 };

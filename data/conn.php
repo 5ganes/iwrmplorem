@@ -9,18 +9,19 @@
 		var $db;
 		
 		function Dbconn(){
-			// $this->host = "localhost";
-			// $this->uname = "krishwt5_iwrm"; 		
-			// $this->psw = "qH==C$!TqA8w";					
-			// $this->dbname = "krishwt5_iwrm";
-			
 			$this->host = "localhost";
 			$this->uname = "root"; 		
 			$this->psw = "";					
 			$this->dbname = "iwrm";
 			
 			$this->links = mysql_connect($this->host,$this->uname,$this->psw) or die("Sorry, couldnot connect to MySQL Server");
-			$this->db = mysql_select_db($this->dbname,$this->links) or die("Sorry, couldnot find database");			
+			$this->db = mysql_select_db($this->dbname,$this->links) or die("Sorry, couldnot find database");	
+			//$result = mysql_query("SET NAMES utf8");		
+			mysql_set_charset('utf8');
+			
+			//mysql_query("SET NAMES 'utf8'");
+			//mysql_query("SET CHARACTER SET utf8");
+			//mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
 		}
 		
 		function exec($sqlMain){

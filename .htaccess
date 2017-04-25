@@ -8,63 +8,62 @@ RewriteEngine On
 
 #for english
 RewriteRule ^en/home index.php?lan=en [L]
-RewriteRule ^en/publications index.php?action=publications [L]
+#RewriteRule ^en/publications index.php?action=publications [L]
 RewriteRule ^en/bills index.php?action=bills [L]
-RewriteRule ^en/contact-us index.php?action=contact-us [L]
+RewriteRule ^en/contact-us index.php?action=contact-us&lan=en [L]
+RewriteRule ^en/our-audios index.php?action=audios&lan=en [L]
+RewriteRule ^en/our-videos index.php?action=videos&lan=en [L]
+RewriteRule ^en/photo-gallery index.php?action=photo_gallery&lan=en [L]
+RewriteRule ^en/show-type/important-links index.php?action=show_type&type=Important-Links&lan=en [L]
+RewriteRule ^en/sms-subscription index.php?action=sms_subscription&lan=en [L]
 RewriteRule ^en/([-A-Za-z0-9]+)$ index.php?lan=en&query=$1 [L]
-RewriteRule ^en index.php?lan=en [L]
+RewriteRule ^en$ index.php?lan=en [L]
 
-RewriteRule ^signup index.php?action=sign_up [L]
-RewriteRule ^prelogin index.php?action=pre_login [L]
-RewriteRule ^makelogin index.php?action=make_log_in [L]
+#sms-subscription
+RewriteRule ^sms-subscription index.php?action=sms_subscription [L]
+
+#show all by type
+RewriteRule ^show-type/important-links index.php?action=show_type&type=Important-Links [L]
+
+
+RewriteRule photo-gallery index.php?action=photo_gallery [L]
+
+RewriteRule ^video-gallery index.php?action=video_gallery [L]
+
 RewriteRule ^forgotpassword index.php?action=forgot_password [L]
 RewriteRule ^home index.php [L]
 
-RewriteRule ^procurement/([-A-Za-z0-9]+)$ index.php?action=procurement_sub&url=$1 [L]
-
-#for bills
-RewriteRule ^bills index.php?action=bills [L]
-
 RewriteRule ^products index.php?action=products [L]
+RewriteRule ^bills.html bills.php [L]
 
 RewriteRule ^contact-us index.php?action=contact-us [L]
 
-#our calendar
-#RewriteRule ^our-calendar index.php?action=pdfreader&url=our-calendar [L]
+#our audios
+RewriteRule ^our-audios index.php?action=audios [L]
+#our videos
+RewriteRule ^our-videos index.php?action=videos [L]
 
-#publications
-RewriteRule ^publications index.php?action=publications [L]
+RewriteRule ^category-([-A-Za-z0-9]+).html$ index.php?url=$1&action=showcategory [L]
 
-#forum login
-RewriteRule ^userlogin.html userlogin.php [L]
-#RewriteRule ^userlogin.html/([-A-Za-z0-9]+) userlogin.php?msg=$1 [L]
+# fro TESTIMONIALS and FEEDBACK
+RewriteRule ^testimonials/([-A-Za-z]+)/([-A-Za-z0-9]+)$ index.php?action=testimonials&$1=$2 [L]
+RewriteRule ^testimonials index.php?action=testimonials [L]
 
-#forum page
-#RewriteRule ^forum.html forum.php [L]
-RewriteRule ^forum.php/([-A-Za-z0-9]+)$ forum.php?id=$1 [L]
-#RewriteRule ^forum.php/([-A-Za-z0-9]+)/([-A-Za-z0-9]+)$ forum.php?id=$1&msg=$2 [L]
-
-#for audio url
-RewriteRule ^radio-programs$ index.php?action=audio&pid=1069 [L]
-
-#for agri-magazine url
-RewriteRule ^agri-magazine$ index.php?action=agri-magazine [L]
-RewriteRule ^agri-magazine/([-A-Za-z0-9]+)$ index.php?action=agri-magazine&year=$1 [L]
-
-#for krishi-diary url
-RewriteRule ^krishi-diary$ index.php?action=krishi-diary [L]
-RewriteRule ^krishi-diary/([-A-Za-z0-9]+)$ index.php?action=krishi-diary&id=$1 [L]
-RewriteRule ^krishi-diary/([-A-Za-z0-9]+)/([-A-Za-z0-9]+)$ index.php?action=krishi-diary&id=$1&url=$2 [L]
-
-# fro Photo Gallery
-RewriteRule ^photo-gallery index.php?action=photo-gallery [L]
-#RewriteRule ^photo-gallery/([-A-Za-z0-9]+)$ index.php?action=photo-gallery [L]
+RewriteRule ^feedback/([-A-Za-z]+)/([-A-Za-z0-9]+)$ index.php?action=feedback&$1=$2 [L]
+RewriteRule ^feedback index.php?action=feedback [L]
 
 RewriteRule ^([-A-Za-z0-9]+)/page/([0-9]+)$ index.php?query=$1&page=$2 [L]
 RewriteRule ^([-A-Za-z0-9])+$ index.php?query=$0 [L]
 #RewriteRule index.html$ index.php [L]
 
+RewriteRule video_gallery index.php?action=video_gallery [L]
+
+#for programs
+#RewriteRule ^program-login.html programlogin.php [L]
+#RewriteRule ^program-management.html program.php [L]
+
 #RewriteRule ^gallery/([0-9]+)\.html$ index.php?galleryId=$1 [L]
+#RewriteRule ^testimonials/([-A-Za-z0-9]+)\.html$ index.php?action=testimonials&$1 [L]
 #RewriteRule ^search/([-A-Za-z0-9]+)/([0-9])\.html$ index.php?action=search&keyword=$1&page=$2 [L]
 #RewriteRule ^([-A-Za-z0-9]+)/([-A-Za-z0-9]+)\.html$ index.php?action=$1&title=$2 [L]
 #RewriteRule ^([-A-Za-z0-9]+)\.html$ index.php?title=$1 [L]
