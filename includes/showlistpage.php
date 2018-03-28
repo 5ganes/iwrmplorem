@@ -1,59 +1,64 @@
-<div class="col-md-9">
-    <div class="panel panel-primary">          
-        <div class="panel-heading"><h3><?php if($lan!='en') echo $pageName; else echo $pageNameEn;?></h3></div>
-        <div class="panel-body dynamic">
-            <?php
-                $content=$groups->getById($pageId);
-                $contentGet=$conn->fetchArray($content);
-                if($lan!='en')
-                   echo $contentGet['contents'];
-                else echo $contentGet['contentsen'];
-            ?>
+<?php include("includes/breadcrumb.php"); ?>
+
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <i class="icon-flag page-title-icon"></i>
+                <h2><?php if($lan!='en') echo $pageName; else echo $pageNameEn;?></h2>
+            </div>
         </div>
-        <div class="page-row">
-		    <div class="table-responsive">
-		    	<table class="table table-boxed">
-		            <thead>
-		                <tr>
-				            <th width="10%">SN</th>
-				            <th width="50%">News</th>
-				            <th width="40"></th>
-		                </tr>
-		            </thead>
-		            <tbody>
-		            	<?php
-						$pagename = "index.php?linkId=". $pageId ."&";
-						$sql = "SELECT * FROM groups WHERE parentId = '$pageId' ORDER BY weight DESC";
-						$newsql = $sql;
-						$limit = LISTING_LIMIT;
+    </div>
+</div>
 
-						//get alias name
-						$alias=$groups->getById($pageId);
-						$aliasGet=$conn->fetchArray($alias);
+<!-- Conetnt Full Width Text -->
+<div class="services-full-width container">
+    <div class="row">
+        <div class="services-full-width-text span12">
+			<p>
+				<?php
+				$pagename = "index.php?linkId=". $pageId ."&";
+				
+				$sql = "SELECT * FROM groups WHERE parentId = '$pageId' ORDER BY id DESC";
+				
+				$newsql = $sql;
 
-						include("includes/pagination.php");
-						$return = Pagination($sql, "", $limit, $aliasGet['urlname']);
-						$arr = explode(" -- ", $return);
-						$start = $arr[0];
-						$pagelist = $arr[1];
-						$count = $arr[2];
-						$newsql .= " LIMIT $start, $limit";
-						$result = mysql_query($newsql);
-						while ($listRow = $conn->fetchArray($result))
-						{?>
-			                <tr>
-			                    <td><?php echo $count++;?></td>
-			                    <td>
-			                    	<a href="<?php if($lan=='en') echo 'en/'; echo $listRow['urlname']; ?>">
-			                    		<?php if($lan=='en') echo $listRow['nameen']; echo $listRow['name']; ?>
-			                    	</a>
-			                    </td>
-			                    <td><?php if($lan=='en') echo $listRow['shortcontentsen']; echo $listRow['shortcontents']; ?></td>
-			                </tr>
-		         		<?php }?>
-		            </tbody>
-		        </table>
-			</div>
-		</div>
-    </div>            
+				$limit = LISTING_LIMIT;
+				
+				include("includes/pagination.php");
+				$return = Pagination($sql, "");
+				
+				$arr = explode(" -- ", $return);
+
+				$start = $arr[0];
+				$pagelist = $arr[1];
+				$count = $arr[2];
+				
+				$newsql .= " LIMIT $start, $limit";
+				
+				$result = mysql_query($newsql);
+				
+				while ($listRow = $conn->fetchArray($result))
+				{?>
+					<div class="listRow">
+			  			<? if(file_exists(CMS_GROUPS_DIR . $listRow['image']) && !empty($listRow['image'])){?>
+			  			<div style="float: left; width: 110px;"> <a href="<?= $listRow['urlname'] ?>"><img src="<?php echo imager($listRow['image'], 100, 75, "fix"); ?>" alt="<?php echo $listRow['title']; ?>" style="border:0" /></a>
+			  			</div>
+			  	<? } ?>
+			  	<div>
+			    	<div>
+			      		<div class="newsList" style="font-weight: bold;font-size: 17px;">
+			      			<a href="<?php echo $listRow['urlname']; ?>"><?php echo $listRow['name']; ?></a>
+			      		</div>
+			      		<?php echo $listRow['shortcontents']; ?> </div>
+			  		</div>
+				</div>
+				<div style="clear:both;"></div>
+				<? }
+				if($count > $limit)
+				echo $pagelist;
+				?>
+			</p>
+        </div>
+    </div>
 </div>

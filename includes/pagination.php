@@ -1,5 +1,5 @@
 <?php
-function Pagination($content, $type, $limit=10, $alias_name)
+function Pagination($content, $type)
 {
 	global $pagename;
 	
@@ -18,7 +18,7 @@ function Pagination($content, $type, $limit=10, $alias_name)
 	}
 	else
 	{		
-		// global $limit;
+		global $limit;
 		
 		$rsord = mysql_query($content);
 		
@@ -29,7 +29,6 @@ function Pagination($content, $type, $limit=10, $alias_name)
 			
 		if (!isset($limit))
 			$limit = 10;	// no of records to be displayed in each page
-		// echo $limit; die();
 		
 		$count = $cntorder;
 		
@@ -52,7 +51,7 @@ function Pagination($content, $type, $limit=10, $alias_name)
   
 	$pageList .= "<div style='padding-bottom:5px;'>Results $pages : You are at page $curpage of $pages</div>";
   if (($curpage-1) > 0){
-   $pageList .= "<a href='".$alias_name.'/'."page/".($curpage-1)."' title='Previous Page' class='paging'>&laquo; Prev</a>&nbsp;";
+   $pageList .= "<a href='".$pagename."page/".($curpage-1)."' title='Previous Page' class='paging'>&laquo; Prev</a>&nbsp;";
   }
 	
 	for($i=1; $i<=$pages; $i++)
@@ -60,11 +59,11 @@ function Pagination($content, $type, $limit=10, $alias_name)
 		if($curpage == $i)
 			$pageList .= ' <span class="selected">'. $i . ' </span>';
 		else
-			$pageList .= ' <a href="'.$alias_name.'/'.'page/'. $i .'" class="paging">'. $i . '</a> ';
+			$pageList .= ' <a href="'. $pagename .'page/'. $i .'" class="paging">'. $i . '</a> ';
 	}
 	
   if (($curpage+1) <= $pages){
-   $pageList .= "<a href='".$alias_name.'/'."page/".($curpage+1)."' title='Next Page' class='paging'>&nbsp;Next &raquo;</a>";
+   $pageList .= "<a href='".$pagename."page/".($curpage+1)."' title='Next Page' class='paging'>&nbsp;Next &raquo;</a>";
   }
   $pageList .= "</div>\n";
 	

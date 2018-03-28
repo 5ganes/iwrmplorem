@@ -1,95 +1,38 @@
-<style>
-	.listTitle{}
-	.listTitle a
-	{
-    	color: #FF0000;
-    	font-family: tahoma;
-    	font-size: 16px;
-    	text-decoration: none;
-	}
-</style>
-
-<div id="contentsPage" style="color:white; text-align:justify; font-family:Tahoma, Geneva, sans-serif; font-size:13px;">
-<h1 style="text-align:left; margin-left:20px">Search Details</h1>
-
-<?php
-$keyword=$_POST['keyword'];
-$keyword=explode(" ",$keyword);
-$arrlen=count($kwords);
-$tablenames=array('groups');
-$arrtbllen=count($tablenames);
-$nums=0;
-
-
-if(!empty($keyword)){
-
-foreach($keyword as $ex)
-{
-	foreach($tablenames as $tb)
-	{
-		$s = "select DISTINCT * from $tb where linkType='Product' and (`name` LIKE '$ex%' OR shortcontents LIKE '$ex%' OR contents like '$ex%')";
-		$sql=mysql_query($s);
-		$numRows= mysql_num_rows($sql);
-		$nums+=$numRows;
-		while($row=mysql_fetch_array($sql))
-		{		
-		?>
-		<div style="padding:5px 0" class="listTitle"><br/>
-    <?php
-    if ($row['linkType'] == "Link")
-		{
-			echo "<a href='" . $row['contents'] . "' >";
-		}
-		else if ($row['linkType'] == "File")
-		{
-			echo "<a href='" . CMS_FILES_DIR . $row['contents'] . "' >";
-		}
-		else if ($row['linkType'] == "Activity")
-		{
-			
-			echo "<a href='"."activity-".$row['urlname'].".html"."'>";
-		}
-		else if ($row['linkType'] == "Destination")
-		{
-			
-			echo "<a href='"."destination-".$row['urlname'].".html"."'>";
-		}  
-		else if ($row['linkType'] == "Region")
-		{
-			
-			echo "<a href='"."region-".$row['urlname'].".html"."'>";
-		}  
-		else
-		{
-			echo "<a href='".$row['urlname']."'>";
-		}
-		
-		echo $row['name'] . "</a>";
-    ?>
-    </div>
-    <?php if($row['linkType'] != "Link" || $row['linkType'] != "File"){ ?>
-    <div id="news"> <? echo substr(strip_tags($row['shortcontents']), 0, 500); ?> </div>
-    <?php } ?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<ul>
+    <p><span style="font-weight:bold; font-size:20px; text-decoration:underline">Search Details</span></p>
+    <?
+    $keyword=$_POST['keyword']; //echo $keyword; die();
+	$sql="select * from diary where categoryId='4' and (name like '%$keyword%' or urlname like '%$keyword%' or phone like '%$keyword%' or fax like '%$keyword%' or email like '%$keyword%' or website like '%$keyword%') order by weight";
+	
+	$result=mysql_query($sql);
+	//echo $sql;
+	?>
+	
+	<table width="100%"  border="0" cellpadding="4" cellspacing="0">
+        <tr bgcolor="#F1F1F1" class="tahomabold11">
+            <td width="1">&nbsp;</td>
+            <td><strong>S.N.</strong></td>
+            <td><b>Organization</b></td>
+            <td><b>Phone</b></td>
+            <td><b>Fax</b></td>
+            <td><b>Email</b></td>
+            <td><b>Website</b></td>
+        </tr>
+        <?
+        $counter=0; $i=0;
+        while($row=$conn->fetchArray($result))
+        {?>
+            <tr <?php if($i%2 != 0) echo 'bgcolor="#F7F7F7"'; else echo 'bgcolor="#FFFFFF"'; ?>>
+                <td valign="top">&nbsp;</td>
+                <td valign="top"><?=++$i;?></td>
+                <td valign="top"><?= $row['name'] ?></td>
+                <td valign="top"><?=$row['phone'];?></td>
+                <td valign="top"><?=$row['fax'];?></td>
+                <td valign="top"><?=$row['email'];?></td>
+                <td valign="top"><?=$row['website'];?></td>
+            </tr>
+        <? }?>
+    </table>
     
-		<?php			
-	 }		
-	}
-}
-?>
-
-<?php
-if($nums<1)
-{
-	echo "<br/><br/><h3> No search result found!!!</h3>";
-}
-?>
-
-
-<?php
-
-}
-else {
-	echo "<h2> Please Enter the keyword for Searching !!</h2>";
-}
-?>
-</div>
+</ul>

@@ -1,68 +1,88 @@
-<style type="text/css">
-    .next-prev{
-      display: flex; justify-content: space-between;padding: 1%;background: #DDEFDA;
-    }
-    .next-prev a{
-      color: red
-    }
-    .next-prev a:hover{
-      color: green;
-    }
-    .next-prev:first-child{
+<?php //include("includes/breadcrumb.php"); ?>
 
-    }
-    .next-prev :last-child{
-
-    }
-</style>
-<div class="col-md-9">
-    <div class="panel panel-primary">          
-        <div class="panel-heading"><h3><?php if($lan!='en') echo $pageName; else echo $pageNameEn;?></h3></div>
-        <div class="panel-body dynamic">
-            <?php 
-                $navNextResult = $groups->getNextResult($pageId); $navNextRow = $conn->fetchArray($navNextResult);
-                $navPreviousResult = $groups->getPreviousResult($pageId); $navPreviousRow = $conn->fetchArray($navPreviousResult);
-            ?>
-            <div class="next-prev">
-                <div> <a href="<?= $navPreviousRow['urlname']; ?>" class="paging">&laquo; Previous</a> </div>
-                <div> <a href="<?php echo $navNextRow['urlname']; ?>" class="paging">Next &raquo;</a> </div>
+<?php
+	$listResult = $groups->getById($pageId);
+	$listRow = $conn->fetchArray($listResult);
+	
+	$pageResult = $groups->getById($pageParentId);
+	$pageRow = $conn->fetchArray($pageResult);
+?>
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <i class="icon-flag page-title-icon"></i>
+                <h2><?php echo $pageName; ?></h2>
             </div>
-            <?php
-                $content=$groups->getById($pageId);
-                $contentGet=$conn->fetchArray($content);
-                if($lan!='en')
-                   echo $contentGet['contents'];
-                else echo $contentGet['contentsen'];
-            ?>
         </div>
-        <?php $file=$listingFiles->getByListingId($pageId);
-        if($conn->numRows($file)>0){?>
-            <div class="page-row">
-                <div><h5 style="font-weight: bold;">#Attachments</h5></div>
-                <div class="table-responsive">
-                    <table class="table table-boxed">
-                        <thead>
-                            <tr>
-                                <th width="10%">SN</th>
-                                <th width="70%">Filename</th>
-                                <th width="20%">Download</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $count=1;
-                            while($fileGet=$conn->fetchArray($file))
-                            {?>
-                                <tr>
-                                    <td><?php echo $count++;?></td>
-                                    <td><?php echo $fileGet['filename']; ?></td>
-                                    <td><a class="btn btn-success" download="" href="<?=CMS_LISTING_FILES_DIR.$fileGet['filename'];?>"><i class="fa fa-download"></i> Download </a></td>
-                                </tr>
-                            <?php }?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        <?php }?>
-    </div>            
+    </div>
+</div>
+<!-- Conetnt Full Width Text -->
+<div class="services-full-width container">
+    <div class="row">
+        <div class="services-full-width-text span12">
+			<p>
+<div style="margin-bottom:5px;"> 
+  <!-- for navigation -->
+  <?
+		$navNextResult = $groups->getNextResult($pageId);
+		$navNextRow = $conn->fetchArray($navNextResult);
+
+		$navPreviousResult = $groups->getPreviousResult($pageId);
+		$navPreviousRow = $conn->fetchArray($navPreviousResult);
+	?>
+  <div style="float: left;" > <a href="<?= $navPreviousRow['urlname']; ?>" class="paging">&laquo; Previous</a> </div>
+  <div style="float: right;"> <a href="<?php echo $navNextRow['urlname']; ?>" class="paging">Next &raquo;</a> </div>
+  <div style="clear:both"></div>
+</div>
+<div class="listRow">
+  <div class="listTitle" style="font-weight: bold;font-size: 17px;"> <?= $pageName; ?>
+  </div>
+  <? if(file_exists(CMS_GROUPS_DIR . $listRow['image']) && !empty($listRow['image'])){?>
+  <div align="center" style="text-align:center; padding-top:10px;"><img src="<?php echo imager($listRow['image'], 500, 500, ""); ?>" />  <div style="clear:both"></div>
+  </div>
+  <? }?>
+  
+  <div>
+    <?= $listRow['contents']; ?>
+  </div>
+</div>
+<br />
+<div><u>Attachments#</u></div>
+<?
+	$lfResult = $listingFiles->getByListingId($pageId);
+	if ($conn->numRows($lfResult) == 0)
+	{
+		echo "<div class='attach'>No files</div>";
+	}
+	else
+	{
+	?>
+<div class="attach">
+  <table width="100%">
+    <?
+			}
+			while ($lfRow = $conn->fetchArray($lfResult))
+			{
+			$file = CMS_LISTING_FILES_DIR . $lfRow['filename'];
+			?>
+    <tr>
+      <td><?= $lfRow['filename'] . " (" . round((filesize($file)/1024),0) ." KB)"; ?></td>
+      <td><?= $lfRow['caption']; ?></td>
+      <td><a href="<?= CMS_LISTING_FILES_DIR . $lfRow['filename']; ?>">Download</a></td>
+    </tr>
+    <?
+			}
+			
+			if ($conn->numRows($lfResult) > 0)
+			{
+			?>
+  </table>
+</div>
+<?
+	}
+	?>
+</p>
+        </div>
+    </div>
 </div>

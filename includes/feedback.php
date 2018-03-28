@@ -1,4 +1,3 @@
-<style> .cmsAstriks{ color:red} .cmsTxtField{ width:230px} .cmsFormSubmitMsg{ color:red} </style>
 <script language="javascript">
 function validateform(fm){
 	if(fm.txtname.value == ""){
@@ -42,10 +41,10 @@ elseif(isset($_REQUEST['msg']))
 	$msg = $_REQUEST['msg'];
 ?>
 <div class="cmsFeedbackWrapper">
-    <h1>सुझाब तथा सल्लाह</h1>
+    <h1>Feedback Form</h1>
     <div style="padding-top:10px;">
 		<form name="frmFeedback" method="post" action="" onSubmit="return validateform(this);">
-    <table width="100%" border="0" cellspacing="3" cellpadding="2" class="cmsFormTable">      
+    <table width="100%" border="0" cellspacing="0" cellpadding="2" class="cmsFormTable">      
 			<?php if(!empty($msg)){ ?>
 			<tr>
         <td colspan="2"><span class="cmsFormSubmitMsg"><?php echo $msg; ?></span></td>
@@ -69,11 +68,11 @@ elseif(isset($_REQUEST['msg']))
       </tr>
       <tr>
         <th valign="top" align="left">Comment : <span class="cmsAstriks">*</span></th>
-        <td><textarea style="width:300px;" class="cmsTxtArea" name="txtcomment" cols="" rows="6"><?php echo $txtcomment; ?></textarea></td>
+        <td><textarea style="width:200px;" class="cmsTxtArea" name="txtcomment" cols="" rows="6"><?php echo $txtcomment; ?></textarea></td>
       </tr>
       <tr>
         <th align="left">Security Code : <span class="cmsAstriks">*</span></th>
-        <td><img src="includes/captcha.php?width=110&height=40&characters=6" id="captchaimage" style="margin-bottom:10px;" />&nbsp; <a href="javascript: void(0);" onclick="document.getElementById('captchaimage').src = 'includes/captcha.php?width=110&height=40&characters=6&' + Math.random(); return false;" class="captchaReload" style="position:relative; top:14px; color:red">[ Reload Image ]</a></td>
+        <td><img src="includes/captcha.php?width=110&height=40&characters=6" id="captchaimage" style="margin-bottom:10px;" />&nbsp; <a href="javascript: void(0);" onclick="document.getElementById('captchaimage').src = 'includes/captcha.php?width=110&height=40&characters=6&' + Math.random(); return false;" class="captchaReload" style="position:relative; top:-12px;">[ Reload Image ]</a></td>
       </tr>
       <tr>
         <th>&nbsp;</th>

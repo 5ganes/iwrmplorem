@@ -7,7 +7,7 @@ class Groups
 		
 		$id = cleanQuery($id);
 		$name = cleanQuery($name);
-		//$namenp = cleanQuery($namenp);
+		$namenp = cleanQuery($namenp);
 		$nameen = cleanQuery($nameen);
 		$urlname = cleanQuery($urlname);
 		$type = cleanQuery($type);
@@ -146,17 +146,21 @@ class Groups
 		return $conn->insertId();
 	}
 	
-	function saveVideoSub($id, $parentId, $contents)
+	function saveVideoSub($id, $parentId, $vName, $videoUrl, $contents)
 	{
 		global $conn;
 		
 		$id = cleanQuery($id);
 		$parentId = cleanQuery($parentId);
+		$vName = cleanQuery($vName);
+		$videoUrl = cleanQuery($videoUrl);
 		$contents = cleanQuery($contents);
 		
 		if($id > 0)
 		$sql = "UPDATE groups
 						SET
+							name='$vName',
+							shortcontents='$videoUrl',
 							contents = '$contents'
 						WHERE
 							id = '$id'";
@@ -165,6 +169,8 @@ class Groups
 						SET
 							parentId='$parentId',
 							linkType = 'VideoSub',
+							name='$vName',
+							shortcontents='$videoUrl',
 							contents = '$contents',
 							onDate = NOW()";
 
@@ -184,6 +190,19 @@ class Groups
 		return $result;	
 	
 	}
+	
+	function getByLinkTypeAndCategory($linkType, $category)
+	{
+		global $conn;
+		$linkType = cleanQuery($linkType);
+		$category = cleanQuery($category);
+		$sql = "SElECT * FROM groups WHERE `linkType` = '$linkType' and `activity`='$category' ORDER BY weight";
+		$result = $conn->exec($sql);
+		
+		return $result;	
+	
+	}
+	
 	
 	function saveBlock($id, $name, $urlname, $weight, $pageTitle, $pageKeyword)
 	{
@@ -279,7 +298,7 @@ class Groups
 	
 	
 	
-	function saveActivity($id, $name, $urlname, $block, $shortcontents, $contents, $weight, $featured, $pageTitle, $pageKeyword)
+	function saveActivity($id, $name, $urlname, $block, $activity, $shortcontents, $contents, $weight, $featured, $pageTitle, $pageKeyword)
 	{
 		global $conn;
 		
@@ -288,6 +307,7 @@ class Groups
 		$urlname = cleanQuery($urlname);
 		
 		$block = cleanQuery($block);
+		$activity=cleanQuery($activity);
 		$shortcontents = cleanQuery($shortcontents);
 		$contents = cleanQuery($contents);
 		
@@ -302,6 +322,7 @@ class Groups
 							name = '$name',
 							urlname = '$urlname',
 							block = '$block',
+							activity = '$activity',
 							shortcontents = '$shortcontents',
 							contents = '$contents',
 							weight = '$weight',
@@ -317,6 +338,7 @@ class Groups
 							urlname = '$urlname',
 							linkType = 'Activity',
 							block = '$block',
+							activity = '$activity',
 							shortcontents = '$shortcontents',
 							contents = '$contents',
 							weight = '$weight',
@@ -562,6 +584,31 @@ class Groups
 		return $conn->insertId();
 	}
 	
+	
+	function saveProductWeight($id, $title,$code, $weight)
+	{
+		global $conn;
+		
+		$id = cleanQuery($id);
+		$name = cleanQuery($title);
+		$weight=cleanQuery($weight);
+		$code=cleanQuery($code);
+		
+		$sql = "UPDATE groups
+						SET
+							name = '$name',
+							weight = '$weight',
+							code = '$code'						
+						WHERE
+							id = '$id'";
+		
+		$conn->exec($sql);
+		return $conn->insertId();
+	}
+	
+	
+	
+	
 	function savePackageCMS($id, $packageId, $name, $urlname, $shortcontents, $contents, $weight, $regionId, $categoryId)
 	{
 		global $conn;
@@ -733,18 +780,6 @@ class Groups
 
 		$sql = "SElECT * FROM groups WHERE id = '$id'";
 		$result = $conn->exec($sql);
-		
-		return $result;
-	}
-
-	function getByIdResult($id)
-	{
-		global $conn;
-
-		$id = cleanQuery($id);
-
-		$sql = "SElECT * FROM groups WHERE id = '$id'";
-		$result = $conn->fetchArray($conn->exec($sql));
 		
 		return $result;
 	}
@@ -1262,18 +1297,8 @@ class Groups
 		$row = $conn -> fetchArray($result);
 		return $row['pageKeyword'];
 	}
-
 	
 	// for billing system
-	function getByIdBills($id)
-	{
-		global $conn;
-		$id = cleanQuery($id);
-		$sql = "SElECT * FROM bills WHERE id = '$id'";
-		$result = $conn->exec($sql);
-		return $result;
-	}
-		
 	function getLastWeightBills()
 	{
 		global $conn;
@@ -1289,7 +1314,14 @@ class Groups
 		else
 			return 10;
 	}
-	
+	function getByIdBills($id)
+	{
+		global $conn;
+		$id = cleanQuery($id);
+		$sql = "SElECT * FROM bills WHERE id = '$id'";
+		$result = $conn->exec($sql);
+		return $result;
+	}
 	function saveBills($id, $description, $busn, $spentTitle, $buying, $panNo, $paymentReceiver, $billDate, $amount, $remarks, $publish, $weight)
 	{
 		global $conn;
@@ -1332,6 +1364,14 @@ class Groups
 		return $conn->insertId();
 	}
 	
+	function deleteBill($id)
+	{  
+		global $conn;
+		$id = cleanQuery($id);
+		$result = $this->getByIdBill($id);
+		$sql = "DELETE FROM bills WHERE id = '$id'";
+		$conn->exec($sql);
+	}
 	function getByIdBill($id)
 	{
 		global $conn;
@@ -1344,138 +1384,169 @@ class Groups
 		return $result;
 	}
 	
-	function deleteBill($id)
+	//forum operations
+	function saveForum($id, $name, $contents, $publish, $weight)
+	{
+		global $conn;
+		
+		$id = cleanQuery($id);
+		$name = cleanQuery($name);
+		$contents = cleanQuery($contents);
+		$publish=cleanQuery($publish);
+		$weight=cleanQuery($weight);
+		
+		if($id > 0)
+		$sql = "UPDATE forum
+						SET
+							name = '$name',
+							contents='$contents',
+							publish='$publish',
+							weight = '$weight'						
+						WHERE
+							id = '$id'";
+		else
+		$sql = "INSERT INTO forum SET name= '$name',contents='$contents',publish = '$publish',weight = '$weight',onDate = NOW()";
+		//echo $sql; die();
+		$conn->exec($sql);
+		if($id > 0)
+			return $conn -> affRows();
+		return $conn->insertId();
+	}
+	
+	function getLastWeightForum()
+	{
+		global $conn;
+		
+		$sql = "SElECT weight FROM forum ORDER BY weight DESC LIMIT 1";
+		$result = $conn->exec($sql);
+		$numRows = $conn -> numRows($result);
+		if($numRows > 0)
+		{
+			$row = $conn->fetchArray($result);
+			return $row['weight'] + 10;
+		}
+		else
+			return 10;
+	}
+	
+	function getByIdForum($id)
+	{
+		global $conn;
+		$id = cleanQuery($id);
+		$sql = "SElECT * FROM forum WHERE id = '$id'";
+		$result = $conn->exec($sql);
+		return $result;
+	}
+	
+	function deleteForum($id)
 	{  
 		global $conn;
 		$id = cleanQuery($id);
-		$result = $this->getByIdBill($id);
-		$sql = "DELETE FROM bills WHERE id = '$id'";
+		$result = $this->getByIdForum($id);
+		$sql = "DELETE FROM forum WHERE id = '$id'";
 		$conn->exec($sql);
 	}
 	
-	// procedures for management information system
+	function getForumPosts()
+	{
+		global $conn;
+		$sql = "SElECT * FROM forum WHERE publish='Yes'";
+		$result = $conn->exec($sql);
+		return $result;
+	}
 	
-	function saveProgramType($id, $program_name, $publish, $weight)
+	//comment section
+	function savePost($comment, $postid, $userid, $publish)
 	{
 		global $conn;
 		
-		$id = cleanQuery($id);
-		$program_name = cleanQuery($program_name);
+		$comment = cleanQuery($comment);
+		$postid = cleanQuery($postid);
+		$userid = cleanQuery($userid);
 		$publish = cleanQuery($publish);
-		$weight = cleanQuery($weight);
-		if($id > 0)
-		$sql = "UPDATE programtype
-						SET
-							program_name = '$program_name',
-							weight = '$weight',
-							publish = '$publish'
-						WHERE
-							id = '$id'";
-		else
-		$sql = "INSERT INTO programtype SET program_name = '$program_name', publish='$publish', weight='$weight'";
-		//echo $sql; die();
-		$conn->exec($sql);
-		if($id > 0)
-			return $conn -> affRows();
-		return $conn->insertId();
-	}
-	
-	function getProgramLastWeight()
-	{
-		global $conn;
-		$sql = "SElECT weight FROM programtype ORDER BY weight DESC LIMIT 1";
-		$result = $conn->exec($sql);
-		$numRows = $conn -> numRows($result);
-		if($numRows > 0)
-		{
-			$row = $conn->fetchArray($result);
-			return $row['weight'] + 10;
-		}
-		else
-			return 10;
-	}
-	
-	function getUserLastWeight()
-	{
-		global $conn;
-		$sql = "SElECT weight FROM usertype ORDER BY weight DESC LIMIT 1";
-		$result = $conn->exec($sql);
-		$numRows = $conn -> numRows($result);
-		if($numRows > 0)
-		{
-			$row = $conn->fetchArray($result);
-			return $row['weight'] + 10;
-		}
-		else
-			return 10;
-	}
-	
-	function saveUserType($id, $user_type, $publish, $weight)
-	{
-		global $conn;
-		$id = cleanQuery($id);
-		$user_type = cleanQuery($user_type);
-		$publish = cleanQuery($publish);
-		$weight = cleanQuery($weight);
-		if($id > 0)
-		$sql = "UPDATE usertype
-						SET
-							user_type = '$user_type',
-							weight = '$weight',
-							publish = '$publish'
-						WHERE
-							id = '$id'";
-		else
-		$sql = "INSERT INTO usertype SET user_type = '$user_type', publish='$publish', weight='$weight'";
-		//echo $sql; die();
-		$conn->exec($sql);
-		if($id > 0)
-			return $conn -> affRows();
-		return $conn->insertId();
-	}
-	
-	//for program level
-	function saveProgramLevel($id, $program_level, $publish, $weight)
-	{
-		global $conn;
 		
-		$id = cleanQuery($id);
-		$program_level = cleanQuery($program_level);
-		$publish = cleanQuery($publish);
-		$weight = cleanQuery($weight);
-		if($id > 0)
-		$sql = "UPDATE programlevel
-						SET
-							program_level = '$program_level',
-							weight = '$weight',
-							publish = '$publish'
-						WHERE
-							id = '$id'";
-		else
-		$sql = "INSERT INTO programlevel SET program_level = '$program_level', publish='$publish', weight='$weight'";
+		$sql = "INSERT INTO comments SET comment= '$comment',postid='$postid',userid = '$userid',publish='$publish',onDate = NOW()";
 		//echo $sql; die();
 		$conn->exec($sql);
-		if($id > 0)
-			return $conn -> affRows();
-		return $conn->insertId();
 	}
 	
-	function getProgramLevelLastWeight()
+	function getByIdComment($id)
 	{
 		global $conn;
-		$sql = "SElECT weight FROM programlevel ORDER BY weight DESC LIMIT 1";
+		$id = cleanQuery($id);
+		$sql = "SElECT * FROM comments WHERE id = '$id'";
 		$result = $conn->exec($sql);
-		$numRows = $conn -> numRows($result);
-		if($numRows > 0)
-		{
-			$row = $conn->fetchArray($result);
-			return $row['weight'] + 10;
-		}
-		else
-			return 10;
+		return $result;
 	}
 	
+	function updateStatusComment($id)
+	{
+		global $conn;
+		$id = cleanQuery($id);
+		$row = $this -> getByIdComment($id);
+		$row = $conn->fetchArray($row);
+		if($row['publish'] == "Yes")
+			$stat = "No";
+		else
+			$stat = "Yes";
 
+		$sql="UPDATE comments SET `publish` = '$stat' WHERE id = '$id'";
+
+		$result = $conn->exec($sql);
+		return $conn -> affRows();
+	}
+	
+	function deleteComment($id)
+	{
+		global $conn;
+		
+		$sql = "DELETE FROM comments WHERE id = '$id'";
+		
+		$result = $conn -> exec($sql);
+		return $conn -> affRows();
+	}
+	
+	function getCommentByPost($postid)
+	{
+		global $conn;
+		$postid = cleanQuery($postid); //echo $postid; die();
+		$sql = "SElECT * FROM comments WHERE postid='$postid' and publish='Yes' order by id DESC, onDate Desc, userid DESC";
+		$result = $conn->exec($sql);
+		return $result;
+	}
+	
+	function getNewCountByParentId($parentId){
+		global $conn;
+		// echo $parentId; die();
+		$date=date("Y-m-d");
+		// echo $date; die();
+		$sql="select count(id) as newCount from groups where parentId='$parentId' and date_add(onDate,INTERVAL 3 DAY)>='$date'";
+		// echo $sql;
+		$result=$conn->exec($sql);
+		$data=$conn->fetchArray($result);
+		return $data['newCount'];
+	}
+	
+	function getNewCountByParentIdMainMenu($parentId){
+		global $conn;
+		// echo $parentId; die();
+		$date=date("Y-m-d");
+		// echo $date; die();
+		$sub=$conn->exec("select * from groups where parentId='$parentId'");
+		$return=0;
+		// echo $conn->numRows($sub);
+		if($conn->numRows($sub)>0){
+			while($subGet=$conn->fetchArray($sub)){
+				$pId=$subGet['id'];
+				$sql="select id from groups where parentId='$pId' and date_add(onDate,INTERVAL 3 DAY)>='$date'";
+				// echo $sql;
+				$result=$conn->exec($sql);
+				// echo $conn->numRows($result);
+				if($conn->numRows($result)>0) $return=1;
+			}
+		}
+		return $return;
+	}
+	
 }
-
 ?>
