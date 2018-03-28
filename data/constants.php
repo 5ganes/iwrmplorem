@@ -5,7 +5,7 @@ define("ADMIN_LEFT_WIDTH", "20%");
 define("ADMIN_BODY_WIDTH", "80%");
 define("ADMIN_TITLE", "Admin Control Panel");
 define("PAGE_TITLE", "Irrigation and Water Resource Management Project");
-define("SITE_URL", "http://iwrm.gov.np/");
+define("SITE_URL", "http://localhost/iwrm/");
 
 
 ////////////////IMAGE FOLDER LOCATIONS////////////////////////
